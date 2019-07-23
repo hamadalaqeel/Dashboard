@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./static/css/dc.css">
+    <link rel="stylesheet" href="./static/css/keen-dashboards.css">
+    <link rel="stylesheet" href="./static/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="./static/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="shortcut icon" href="./static/images/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <script src="./static/lib/js/jquery.min.js"></script>
+    <script src="./static/lib/js/bootstrap.min.js"></script>
+    <script src="./static/lib/js/crossfilter.js"></script>
+    <script src="./static/lib/js/d3.js"></script>
+    <script src="./static/lib/js/dc.js"></script>
+    <script src="./static/lib/js/queue.js"></script>
+    <script src="./static/lib/js/keen.min.js"></script>
+    <script src="./static/js/graphs.js"></script>
+    <script src="./static/js/graphs2.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    </head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div id="dismiss">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div class="sidebar-header">
+                <h3>Bootstrap Sidebar</h3>
+            </div>
+            <ul class="list-unstyled components">
+                            <li class="nav-item ">
+                                <a class="navbar-brand " href="index.html"><img style="width: 200px; height:100px;" src="./static/images/logo.png" alt="logo"/></a>
+                            </li>
+                            <br><br><br>
+                            <li class="nav-item">
+                              <a class="nav-link" href="">
+                                <span class="menu-title">Dashboard</span>
+                                <i class="mdi mdi-home menu-icon"></i>
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                                <span class="menu-title">Predictive Models</span>
+                                <i class="menu-arrow"></i>
+                                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                              </a>
+                              <div class="collapse" id="ui-basic">
+                                <ul class="nav flex-column sub-menu">
+                                  <li class="nav-item"> <a class="nav-link" href="./static/pages/ui-features/buttons.html">Eligibility</a></li>
+                                  <li class="nav-item"> <a class="nav-link" href="./static/pages/ui-features/typography.html">Interest Rate</a></li>
+                                </ul>
+                              </div>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="./static/pages/charts/chartjs.html">
+                                <span class="menu-title">Statistics</span>
+                                <i class="mdi mdi-chart-bar menu-icon"></i>
+                              </a>
+                            </li>   
+                            <li class="nav-item sidebar-actions">
+                              <span class="nav-link">
+                                <div class="border-bottom">
+                                  <h6 class="font-weight-normal mb-3">Loans</h6>                
+                                </div>
+                                <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a loan</button>
+                              </span>
+                            </li>
+                            <br><br><br><br><br><br><br><br>
+                            <li class="nav-item">
+                              <div class="border-top">
+                                  <div style="margin-left: 80px;">            
+                                    <a href="javascript:void(0)" class="font-weight-normal mb-3" onclick="closeNav()"> <h6>close</h6></a>
+                                  </div>
+                              </div>
+                            </li>
+                          </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+                            <div class="navbar-brand-wrapper d-flex ">
+                                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                                    <i class="fas fa-align-left"></i>
+                                    <span>Toggle Sidebar</span>
+                                </button>
+                            </div>
+                            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+                              <div class="search-field d-none d-md-block">
+                                <form class="d-flex align-items-center h-100" action="#">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend bg-transparent">
+                                        <i class="input-group-text border-0 mdi mdi-magnify"></i>                
+                                    </div>
+                                    <input type="text" class="form-control bg-transparent border-0" placeholder="Search dashboard">
+                                  </div>
+                                </form>
+                              </div>
+                              <ul class="navbar-nav navbar-nav-right">
+                                <li class="nav-item nav-profile dropdown">
+                                  <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                                    <div class="nav-profile-img">
+                                      <img src="./static/images/faces-clipart/pic-2.png" alt="image">
+                                      <span class="availability-status online"></span>             
+                                    </div>
+                                    <div class="nav-profile-text">
+                                      <p class="mb-1 text-black">Sarah Alabdulhadi</p>
+                                    </div>
+                                  </a>
+                                  <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                                    <a class="dropdown-item" href="#">
+                                      <i class="mdi mdi-account-outline mr-2 text-success"></i>
+                                      My Account
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">
+                                      <i class="mdi mdi-logout mr-2 text-primary"></i>
+                                      Signout
+                                    </a>
+                                  </div>
+                                </li>
+                                <li class="nav-item d-none d-lg-block full-screen-link">
+                                  <a class="nav-link">
+                                    <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+                                  </a>
+                                </li>
+                                <li class="nav-item nav-logout d-none d-lg-block">
+                                  <a class="nav-link" href="#">
+                                    <i class="mdi mdi-power"></i>
+                                  </a>
+                                </li>
+                                <li class="nav-item nav-settings d-none d-lg-block">
+                                  <a class="nav-link" href="#">
+                                    <i class="mdi mdi-format-line-spacing"></i>
+                                  </a>
+                                </li>
+                              </ul>
+                              <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                                <span class="mdi mdi-menu"></span>
+                              </button>
+                            </div>
+                          </nav>
+        </div>
+        <!-- Dark Overlay element -->
+        <div class="overlay"></div>
+    </div>
+
+</body>
