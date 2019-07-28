@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>New User</title>
+  <link rel="stylesheet" href="./static/css/dc.css">
+  <link rel="stylesheet" href="./static/css/keen-dashboards.css">
+  <link rel="stylesheet" href="./static/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="./static/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="./static/css/style1.css">
+  <link rel="shortcut icon" href="./static/images/favicon.png" />
+  <script src="./static/lib/js/jquery.min.js"></script>
+  <script src="./static/lib/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth">
+        <div class="row w-100">  
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left p-5">
+              <a class="close" href="{{ url_for('index') }}">&times;</a>
+              <div class="brand-logo">
+                <img style="width: 300px; height:200px;" src="./static/images/logo.png">
+              </div>
+              <h4>Add new user?</h4>
+              <h6 class="font-weight-light">Adding a new user with full access is easy. It only takes a few steps</h6>
+              <form action="{{ url_for('register') }}" method="POST" class="pt-3">
+                {% for message in get_flashed_messages() %}
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message }}
+                </div>
+                {% endfor %}
+                <div class=" Username form-group">
+                    <input type="text" class="form-control form-control-lg" name="Username" placeholder="Username">
+                    {% if form.Username.errors %}
+                  <ul class="errors"> 
+                      {% for error in form.Username.errors %} 
+                        <li>{{error}}</li>
+                      {% endfor %}
+                  </ul>
+                    {%endif %}
+                </div>
+                <div class="Email form-group">
+                  <input type="email" class="form-control form-control-lg" name="Email" placeholder="Email">
+                    {% if form.Email.errors %}
+                  <ul class="errors"> 
+                      {% for error in form.Email.errors %} 
+                        <li>{{error}}</li>
+                      {% endfor %}
+                  </ul>
+                    {%endif %}
+                </div>
+                <div class="Email11 form-group">
+                  <input type="email" class="form-control form-control-lg" name="Email1" placeholder="Re-enter Email">
+                    {% if form.Email1.errors %}
+                  <ul class="errors"> 
+                      {% for error in form.Email1.errors %} 
+                        <li>{{error}}</li>
+                      {% endfor %}
+                  </ul>
+                    {%endif %}
+                </div>
+                <div class="Password form-group">
+                  <input type="password" class="form-control form-control-lg" name="Password" placeholder="Password">
+                    {% if form.Password.errors %}
+                  <ul class="errors"> 
+                      {% for error in form.Password.errors %} 
+                        <li>{{error}}</li>
+                      {% endfor %}
+                  </ul>
+                    {%endif %}
+                </div>
+                <div class="Password1 form-group">
+                  <input type="password" class="form-control form-control-lg" name="Password1" placeholder="Re-enter Password">
+                    {% if form.Password1.errors %}
+                  <ul class="errors"> 
+                      {% for error in form.Password1.errors %} 
+                        <li>{{error}}</li>
+                      {% endfor %}
+                  </ul>
+                    {%endif %}
+                </div>
+                <div class="mb-4">
+                  <div class="form-check">
+                    <label class="form-check-label text-muted">
+                      <input type="checkbox" class="form-check-input" required>
+                      I agree to all Terms & Conditions
+                    </label>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <input class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" type="submit" value="SIGN UP">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="./static/vendors/js/vendor.bundle.base.js"></script>
+  <script src="./static/vendors/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- inject:js -->
+  <script src="./static/js/off-canvas.js"></script>
+  <script src="./static/js/misc.js"></script>
+  <!-- endinject -->
+</body>
+
+</html>

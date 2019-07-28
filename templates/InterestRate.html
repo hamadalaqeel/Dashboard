@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Interest Rate Model</title>
+    <link rel="stylesheet" href="./static/css/dc.css">
+    <link rel="stylesheet" href="./static/css/keen-dashboards.css">
+    <link rel="stylesheet" href="./static/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="./static/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="./static/css/style1.css">
+    <link rel="shortcut icon" href="./static/images/favicon.png" />
+    
+    <script src="./static/lib/js/jquery.min.js"></script>
+    <script src="./static/lib/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./static/vendors/js/vendor.bundle.base.js"></script>
+    <script src="./static/vendors/js/vendor.bundle.addons.js"></script>
+    <script src="./static/js/off-canvas.js"></script>
+    <script src="./static/js/misc.js"></script>
+    <script src="./static/js/file-upload.js"></script>
+
+</head>
+<body>
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper">
+        <nav class="sidebar" >
+            <ul class="nav list-unstyled components">
+              <li class="nav-item ">
+                  <a class="navbar-brand " href="{{ url_for('index') }}"><img style="width: 200px; height:100px;" src="./static/images/logo.png" alt="logo"/></a>
+              </li>
+              <br><br><br>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('index') }}">
+                  <span class="menu-title">Dashboard</span>
+                  <i class="mdi mdi-home menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-title">Predictive Models</span>
+                  <i class="menu-arrow"></i>
+                  <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ url_for('eligibility') }}">Eligibility</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url_for('interestRate') }}">Interest Rate</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('statistics') }}">
+                  <span class="menu-title">Statistics</span>
+                  <i class="mdi mdi-chart-bar menu-icon"></i>
+                </a>
+              </li>   
+              <li class="nav-item sidebar-actions">
+                <span class="nav-link">
+                  <div class="border-bottom">
+                    <h6 class="font-weight-normal mb-3">Loans</h6>                
+                  </div>
+                  <a class="nav-link" href="{{ url_for('addLoan') }}">
+                      <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a loan</button>
+                  </a>
+                </span>
+              </li>
+            </ul>
+          </nav>
+          <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+          <div class="navbar-brand-wrapper d-flex ">
+                <button id="mySidepanel" class="openbtn">&#9776;</button>
+          </div>
+          <div class="navbar-menu-wrapper d-flex align-items-stretch">
+            <div class="search-field d-none d-md-block">
+              <form class="d-flex align-items-center h-100" action="#">
+                <div class="input-group">
+                  <div class="input-group-prepend bg-transparent">
+                      <i class="input-group-text border-0 mdi mdi-magnify"></i>                
+                  </div>
+                  <input type="text" class="form-control bg-transparent border-0" placeholder="Search dashboard">
+                </div>
+              </form>
+            </div>
+            <ul class="navbar-nav navbar-nav-right">
+              <li class="nav-item nav-profile dropdown">
+                <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                  <div class="nav-profile-img">
+                    <img src="./static/images/faces-clipart/pic-2.png" alt="image">
+                    <span class="availability-status online"></span>             
+                  </div>
+                  <div class="nav-profile-text">
+                  </div>
+                    <p class="mb-1 text-black">{{ session['Username'] }}</p>
+                </a>
+                <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                  <a class="dropdown-item" href="#">
+                    <i class="mdi mdi-account-outline mr-2 text-success"></i>
+                    My Account
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{{ url_for('sign_out') }}">
+                    <i class="mdi mdi-logout mr-2 text-primary"></i>
+                    Signout
+                  </a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('register') }}">
+                  <i class="mdi mdi-account-plus"></i>
+                </a>
+              </li>
+              <li class="nav-item d-none d-lg-block full-screen-link">
+                <a class="nav-link">
+                  <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+                </a>
+              </li>
+              <li class="nav-item nav-logout d-none d-lg-block">
+                <a class="nav-link" href="{{ url_for('sign_out') }}">
+                  <i class="mdi mdi-power"></i>
+                </a>
+              </li>
+              <li class="nav-item nav-settings d-none d-lg-block">
+                <a class="nav-link" href="#">
+                  <i class="mdi mdi-format-line-spacing"></i>
+                </a>
+              </li>
+
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="mdi mdi-menu"></span>
+            </button>
+          </div>
+        </nav>
+        <script>      
+            var state = "expanded";
+            //Check if navbar is expanded or minimized and handle 
+            $('#mySidepanel').click(function() {
+                if (state == "expanded") {
+                    $('.sidebar').css('margin-left', '-255px');
+                    state = "minimized";
+                } else {
+                    if (state == "minimized") {
+                        $('.sidebar').css('margin-left', '0px');
+                        state = "expanded";
+                    }
+                }
+            })
+        </script>
+        <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                        <i class="mdi mdi-crosshairs-gps"></i>                 
+                    </span>
+                    Predective Models > <b>Interest Rate</b>
+                </h3>
+            </div>
+        <div class= "row">
+        <!-- content-wrapper ends -->
+        <div class="col-md-5 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Suggest an Interest Rate</h4>
+                <p class="card-description">
+                  Enter Loan Details
+                </p>
+                <form id="form2" class="forms-sample">
+                  <div class="form-group">
+                    <label for="funded_amnt">Loan Amount</label>
+                    <input type="text" class="form-control" id="funded_amnt" placeholder="Loan Amount">
+                  </div>
+                  <div class="form-group">
+                    <label for="emp_length">Employment Length</label>
+                    <input type="text" class="form-control" id="emp_length" placeholder="Employment Length (in Years)">
+                  </div>
+                  <div class="form-group">
+                    <label for="annual_inc">Annual Income</label>
+                    <input type="text" class="form-control" id="annual_inc" placeholder="Annual Income">
+                  </div>
+                  <input type="submit" class="btn btn-gradient-primary mr-2" value="Submit">
+                  <input type="reset" value="Reset" class="btn btn-light">
+                </form>
+                  <script>
+                        $(document).ready(function() {
+                             $('#form2').on('submit', function(event) {
+                               $.ajax({
+                                  data : {
+                                     funded_amnt : $('#funded_amnt').val(),
+                                     emp_length: $('#emp_length').val(),
+                                     annual_inc: $('#annual_inc').val(),
+                                         },
+                                     type : 'POST',
+                                     url : '/InterestRate'
+                                    })
+                                .done(function(data) {
+                                  $('#output').text(data.output).show();
+                              });
+                              event.preventDefault();
+                              });
+                        });
+                    </script>
+              </div>
+            </div>
+          </div>
+            <div class="col-md-7 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h2>Suggested Decision</h2>
+                    <p class="card-description">
+                      The interest rate should be around ...
+                    </p>
+                    <h4 id ="output"></h4>
+                  </div>
+                </div>
+               
+            </div>
+        </div>
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">         
+          </div>
+        </footer>
+      </div>
+    </div>
+    </div>
+  </div>
+</body>
+
+</html>
