@@ -18,7 +18,7 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Le
 
 app = Flask(__name__)
 
-URI_string = "mongodb://localhost:27017/"
+URI_string = "mongodb+srv://Sarah:admin@cluster0-s9og8.gcp.mongodb.net/test?retryWrites=true&w=majority"
 
 class SignupForm(Form):
     
