@@ -8,7 +8,7 @@ from pathlib import Path
 import os
 import numpy as np
 import pickle
-from sklearn.externals import joblib
+import joblib
 from sklearn.preprocessing import PolynomialFeatures 
 from flask import Flask, render_template, url_for, request, session, redirect, jsonify, flash
 from flask_pymongo import PyMongo
