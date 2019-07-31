@@ -55,6 +55,7 @@ __pycache__/
 /setup.cfg
 
 lib/
+static/node_modules/
 # picked from the internet
 assets/
 
