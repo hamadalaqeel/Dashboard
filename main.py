@@ -71,15 +71,15 @@ def interestRate():
         return render_template('InterestRate.html')
     return render_template("login.html")
 
-@app.route('/InterestRate', methods=['POST', 'GET'])
+@app.route('/InterestRate', methods=['POST'])
 def predict():
-    # int_features = [int(x) for x in request.form.values()]
+    int_features = [request.form['funded_amnt'],request.form['emp_length'],request.form['annual_inc'] ]
     # final_features = [np.array(int_features)]
-    # predcition = model.predict(final_features)
+    predcition = model.predict([[int_features[0],int_features[1],int_features[2]]])
     
-    # output = round(predcition[0],2)
-    # return render_template('InterestRate.html', predcition_text = 'Int Rate ${}'.format(output))
-    return render_template('InterestRate.html', predcition_text = 'Int Rate 1')
+    output = round(predcition[0],2)
+    return render_template('InterestRate.html', predcition_text = 'Int Rate %{}'.format(output))
+    # return render_template('InterestRate.html', predcition_text = 'Int Rate 1')
 
 @app.route('/addLoan')
 def addLoan():

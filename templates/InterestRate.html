@@ -167,7 +167,7 @@
                                     <p class="card-description">
                                         Enter Loan Details
                                     </p>
-                                    <form id="form2" action="{{ url_for('interestRate') }}" method="POST">
+                                    <form id="form2" action="http://127.0.0.1:8080/InterestRate" method="POST">
                                         <div id="" class="form-group col-md-16">
                                             <label for="">Purpose</label>
                                             <select id="type" class="form-control select2" style=" " required="required">
@@ -189,15 +189,15 @@
                                         </div>
                                         <div class="form-group ">
                                             <label for="funded_amnt ">Loan Amount</label>
-                                            <input type="text " class="form-control " id="funded_amnt " placeholder="Loan Amount " required="required">
+                                            <input type="text " class="form-control " id="funded_amnt" name="funded_amnt" placeholder="Loan Amount ">
                                         </div>
                                         <div class="form-group ">
                                             <label for="emp_length ">Employment Length</label>
-                                            <input type="text " class="form-control " id="emp_length " placeholder="Employment Length (in Years) " required="required">
+                                            <input type="text " class="form-control " id="emp_length" name="emp_length" placeholder="Employment Length (in Years) ">
                                         </div>
                                         <div class="form-group ">
                                             <label for="annual_inc ">Annual Income</label>
-                                            <input type="text " class="form-control " id="annual_inc " placeholder="Annual Income " required="required">
+                                            <input type="text " class="form-control " id="annual_inc" name="annual_inc" placeholder="Annual Income ">
                                         </div>
                                         <input type="submit" class="btn btn-gradient-primary mr-2 " value="Submit ">
                                         <input type="reset" value="Reset " class="btn btn-light ">
@@ -210,7 +210,7 @@
                                                             funded_amnt: $('#funded_amnt').val(),
                                                             emp_length: $('#emp_length').val(),
                                                             annual_inc: $('#annual_inc').val(),
-                                                            type: $('#type').val(),
+                                                            // type: $('#type').val(),
                                                         },
                                                         type: 'POST',
                                                         url: '/InterestRate'
@@ -218,7 +218,7 @@
                                                     .done(function(data) {
                                                         $('#output').text(data.output).show();
                                                     });
-                                                event.preventDefault();
+                                                // event.preventDefault();
                                             });
                                         });
                                     </script>
@@ -230,7 +230,7 @@
                                 <div class="card-body ">
                                     <h2>Suggested Decision</h2>
                                     <p class="card-description ">
-                                        The interest rate should be around ...
+                                        The interest rate should be around ... {{predcition_text}}
                                     </p>
                                     <h4 id="output "></h4>
                                 </div>
