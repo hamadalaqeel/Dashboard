@@ -79,7 +79,7 @@
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-stretch">
                     <div class="search-field d-none d-md-block">
-                        <form class="d-flex align-items-center h-100" action="#">
+                        <form class="d-flex align-items-center h-100" action="">
                             <div class="input-group">
                                 <div class="input-group-prepend bg-transparent">
                                     <i class="input-group-text border-0 mdi mdi-magnify"></i>
@@ -171,9 +171,9 @@
                                         Request a new loan
                                     </p>
                                     <div for="funded_amnt" class="padding:100px">
-                                        <form class="form-group col-md-16" style="" method="POST">
+                                        <form class="form-group col-md-16" style="" method="POST" action="http://127.0.0.1:8080/eligibility">
                                             <label for="">Purpose</label>
-                                            <select id="" class="form-control select2" style=" " required="required">
+                                            <select id="" class="form-control select2" style=" " required="required" name="type">
                                         <option selected disabled>Choose...</option>
                                         <option value="Home Improvement">Home Improvement</option>
                                         <option value="Car">Car</option>
@@ -192,35 +192,35 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="funded_amnt">Loan Amount</label>
-                                        <input type="text" class="form-control" id="funded_amnt" placeholder="Loan Amount">
+                                        <input type="text" class="form-control" name="funded_amnt" placeholder="Loan Amount">
                                     </div>
                                     <div class="form-group">
                                         <label for="emp_length">Employment Length</label>
-                                        <input type="text" class="form-control" id="emp_length" placeholder="Employment Length (in Years)">
+                                        <input type="text" class="form-control" name="emp_length" placeholder="Employment Length (in Years)">
                                     </div>
                                     <div class="form-group">
                                         <label for="avg_cur_bal">Current Balance</label>
-                                        <input type="text" class="form-control" id="avg_cur_bal" placeholder="Balance">
+                                        <input type="text" class="form-control" name="avg_cur_bal" placeholder="Balance">
                                     </div>
                                     <div class="form-group">
                                         <label for="num_sats">Number of Satisfactory Accounts</label>
-                                        <input type="text" class="form-control" id="num_sats" placeholder="Satisfactory Accounts">
+                                        <input type="text" class="form-control" name="num_sats" placeholder="Satisfactory Accounts">
                                     </div>
                                     <div class="form-group">
                                         <label for="num_actv_rev_tl">Number of Currently Active Revolving Trades</label>
-                                        <input type="text" class="form-control" id="num_actv_rev_tl" placeholder="Active Revolving Trades">
+                                        <input type="text" class="form-control" name="num_actv_rev_tl" placeholder="Active Revolving Trades">
                                     </div>
                                     <div class="form-group">
                                         <label for="avg_cur_bal">Installment</label>
-                                        <input type="text" class="form-control" id="installment" placeholder="Installment">
+                                        <input type="text" class="form-control" name="installment" placeholder="Installment">
                                     </div>
                                     <div class="form-group">
                                         <label for="num_sats">Ratio of current balance to credit limit</label>
-                                        <input type="text" class="form-control" id="bc_util" placeholder="Balance/Credit limit">
+                                        <input type="text" class="form-control" name="bc_util" placeholder="Balance/Credit limit">
                                     </div>
                                     <div class="form-group">
                                         <label for="num_actv_rev_tl">Number of Credit Lines</label>
-                                        <input type="text" class="form-control" id="total_acc" placeholder="Credit Lines">
+                                        <input type="text" class="form-control" name="total_acc" placeholder="Credit Lines">
                                     </div>
                                     <input type="submit" class="btn btn-gradient-primary mr-2" value="Submit">
                                     <input type="reset" value="Reset" class="btn btn-light">

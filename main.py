@@ -17,7 +17,7 @@ from wtforms import Form, StringField, PasswordField, validators, SubmitField, S
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 
 app = Flask(__name__)
-model = pickle.load(open("vacation_model.pkl","rb"))
+model = pickle.load(open("pickle/vacation_model.pkl","rb"))
 
 URI_string = "mongodb+srv://Sarah:admin@cluster0-s9og8.gcp.mongodb.net/test?retryWrites=true&w=majority"
 
@@ -70,16 +70,56 @@ def interestRate():
     if 'Username' in session:
         return render_template('InterestRate.html')
     return render_template("login.html")
+    
+def get_prediction(_type, features):
+    if _type == 'Home Improvement':
+        model = pickle.load(open("pickle/home_improvement.pkl","rb"))
+        return model.predict([[features[0],features[1],features[2]]])
+    elif _type == 'Car':
+        model = pickle.load(open("pickle/car_model.pkl","rb"))
+        return model.predict([[features[0],features[1],features[2]]])
+    elif _type == 'Credit Card':
+        model = pickle.load(open("pickle/credit_card.pkl","rb"))
+        return model.predict([[features[0],features[1],features[2]]])
+    elif _type == 'Debt Consolidation':
+        model = pickle.load(open("pickle/debt_consolidation.pkl","rb"))
+        return model.predict([[features[0],features[1],features[2]]])
+    elif _type == 'House':
+        model = pickle.load(open("pickle/house.pkl","rb"))
+        return model.predict([[features[0],features[1],features[2]]])
+    elif _type == 'Major Purchase':
+        model = pickle.load(open("pickle/major_purchase.pkl","rb"))
+        return model.predict([[features[0],features[1],features[2]]])
+    elif _type == 'Medical':
+        model = pickle.load(open("pickle/medical.pkl","rb"))
+        return model.predict([[features[0],features[1],features[2]]])
+    elif _type == 'Moving':
+        model = pickle.load(open("pickle/moving.pkl","rb"))
+        return model.predict([[features[0],features[1],features[2]]])
+    elif _type == 'Renewable Energy':
+        model = pickle.load(open("pickle/renewable_energy.pkl","rb"))
+        return model.predict([[features[0],features[1],features[2]]])
+    elif _type == 'Small Business':
+        model = pickle.load(open("pickle/small_business.pkl","rb"))
+        return model.predict([[features[0],features[1],features[2]]])
+    elif _type == 'Vacation':
+        model = pickle.load(open("pickle/vacation_model.pkl","rb"))
+        return model.predict([[features[0],features[1],features[2]]])
+    #others
+    else:
+        model = pickle.load(open("pickle/others.pkl","rb"))
+        return model.predict([[features[0],features[1],features[2]]])
 
 @app.route('/InterestRate', methods=['POST'])
 def predict():
     int_features = [request.form['funded_amnt'],request.form['emp_length'],request.form['annual_inc'] ]
-    # final_features = [np.array(int_features)]
-    predcition = model.predict([[int_features[0],int_features[1],int_features[2]]])
-    
-    output = round(predcition[0],2)
-    return render_template('InterestRate.html', predcition_text = 'Int Rate %{}'.format(output))
-    # return render_template('InterestRate.html', predcition_text = 'Int Rate 1')
+    _type = request.form.get('type') 
+    try:
+        predcition = get_prediction(_type, int_features)
+        output = round(predcition[0],2)
+        return render_template('InterestRate.html', predcition_text = '%{}'.format(output)  + ' for ' + _type)
+    except:
+        return render_template('InterestRate.html', predcition_text = "")
 
 @app.route('/addLoan')
 def addLoan():
