@@ -17,6 +17,7 @@ from wtforms import Form, StringField, PasswordField, validators, SubmitField, S
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 
 app = Flask(__name__)
+model = pickle.load(open("vacation_model.pkl","rb"))
 
 URI_string = "mongodb+srv://Sarah:admin@cluster0-s9og8.gcp.mongodb.net/test?retryWrites=true&w=majority"
 
@@ -69,6 +70,16 @@ def interestRate():
     if 'Username' in session:
         return render_template('InterestRate.html')
     return render_template("login.html")
+
+@app.route('/InterestRate', methods=['POST', 'GET'])
+def predict():
+    # int_features = [int(x) for x in request.form.values()]
+    # final_features = [np.array(int_features)]
+    # predcition = model.predict(final_features)
+    
+    # output = round(predcition[0],2)
+    # return render_template('InterestRate.html', predcition_text = 'Int Rate ${}'.format(output))
+    return render_template('InterestRate.html', predcition_text = 'Int Rate 1')
 
 @app.route('/addLoan')
 def addLoan():
@@ -158,7 +169,7 @@ def predictInterestRate():
     polynomial_features = PolynomialFeatures(degree=3)
     to_predict_list = polynomial_features.fit_transform(to_predict_list)
     with open('IntRateRegression.pkl','rb') as f:
-        loaded_model =  pickle.load(f)
+        loaded_model = model#pickle.load(f)
     result = loaded_model.predict(to_predict_list)    
     return jsonify({'output': str(float("{0:.2f}".format(result[0]))) + '%'})
 
