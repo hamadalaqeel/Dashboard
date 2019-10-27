@@ -173,8 +173,8 @@
                                     <div for="funded_amnt" class="padding:100px">
                                         <form class="form-group col-md-16" style="" method="POST" action="http://127.0.0.1:8080/eligibility">
                                             <label for="">Purpose</label>
-                                            <select id="" class="form-control select2" style=" " required="required" name="type">
-                                        <option selected disabled>Choose...</option>
+                                            <select id="" class="form-control select2" required="required" name="type">
+                                        <option value>Choose...</option>
                                         <option value="Home Improvement">Home Improvement</option>
                                         <option value="Car">Car</option>
                                         <option value="Credit Card">Credit Card</option>
@@ -258,7 +258,7 @@
                                 <div class="card-body">
                                     <h2>Suggested Decision</h2>
                                     <p class="card-description">
-                                        &nbsp;&nbsp;This loan should be ...
+                                        &nbsp;&nbsp;This loan should be ... {{output}}
                                     </p>
                                     <h3 style="color: dodgerblue" id="output"></h3>
                                     <h3 style="color: crimson" id="output3"></h3>
@@ -282,7 +282,9 @@
     </div>
 </body>
 <script>
-    $('.select2').select2();
+    $('.select2').select2({
+        placeholder: "Choose..."
+    });
 </script>
 
 </html>

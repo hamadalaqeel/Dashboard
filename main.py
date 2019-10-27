@@ -195,9 +195,11 @@ def predictEligibility():
         loaded_model =  pickle.load(f)
     result = loaded_model.predict([to_predict_list]) 
     if result[0] == 1:
-        return jsonify({'output': 'accepted!'})
+        return render_template('eligibility.html', output ='Accepted.')
+        # return jsonify({'output': 'accepted!'})
     else: 
-        return jsonify({'output3': 'rejected!'})
+        return render_template('eligibility.html', output ='Rejected.')
+        # return jsonify({'output3': 'rejected!'})
 
 @app.route('/InterestRate', methods=['POST'])
 def predictInterestRate():
