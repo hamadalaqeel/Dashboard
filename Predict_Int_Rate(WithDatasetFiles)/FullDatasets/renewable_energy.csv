@@ -1,0 +1,8 @@
+Column,loan_amnt,funded_amnt,int_rate,installment,grade,emp_length,annual_inc,loan_status,purpose,addr_state,last_pymnt_amnt,avg_cur_bal,num_actv_rev_tl
+454,1500,1500,16.4,53.04,5,1.0,135000.0,Fully Paid,renewable_energy,MI,1520.5,14766.0,4
+562,1000,1000,22.5,38.45,4,3.0,40000.0,Fully Paid,renewable_energy,NY,858.76,3744.0,2
+978,4275,4275,11.02,140.0,6,5.0,116129.0,Fully Paid,renewable_energy,FL,27.05,19748.0,9
+1126,10000,10000,12.4,334.06,6,2.0,48000.0,Fully Paid,renewable_energy,CA,9886.65,1029.0,2
+3312,1200,1200,27.27,49.17,3,10.0,68000.0,Fully Paid,renewable_energy,CT,1161.06,4434.0,8
+4175,1000,1000,7.56,31.14,7,10.0,65000.0,Fully Paid,renewable_energy,NJ,986.69,16537.0,7
+4184,10000,10000,16.91,356.08,5,6.0,65000.0,Fully Paid,renewable_energy,CA,10015.78,1755.0,9
