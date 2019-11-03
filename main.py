@@ -51,25 +51,25 @@ class LoginForm(Form):
 def index():
     if 'Username' in session:
         return render_template("index.html")
-    return render_template("login.html")
+    return render_template("index.html")
 
 @app.route("/statistics")
 def statistics():
     if 'Username' in session:
         return render_template("Statistics.html")
-    return render_template("login.html")
+    return render_template("Statistics.html")
 
 @app.route('/eligibility')
 def eligibility():
     if 'Username' in session:
         return render_template('eligibility.html')
-    return render_template("login.html")
+    return render_template("eligibility.html")
 
 @app.route('/InterestRate')
 def interestRate():
     if 'Username' in session:
         return render_template('InterestRate.html')
-    return render_template("login.html")
+    return render_template("InterestRate.html")
     
 def get_prediction(_type, features):
     if _type == 'Home Improvement':
@@ -125,7 +125,7 @@ def predict():
 def addLoan():
     if 'Username' in session:
         return render_template('addLoan.html')
-    return render_template("login.html")
+    return render_template("addLoan.html")
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -250,3 +250,8 @@ def predictEligibilityAndInterestRate():
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
     app.run(host="127.0.0.1",port=8080,debug=True)
+
+def api_response():
+    from flask import jsonify
+    if request.method == 'POST':
+        return jsonify(**request.json)   
