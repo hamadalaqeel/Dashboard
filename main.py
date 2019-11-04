@@ -19,7 +19,8 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Le
 app = Flask(__name__)
 model = pickle.load(open("pickle/vacation_model.pkl","rb"))
 
-URI_string = "mongodb+srv://HamadAlaqeel:hamad_A123@cluster0-c7klj.gcp.mongodb.net/test?retryWrites=true&w=majority"
+URI_string = "mongodb://HamadAlaqeel:hamadA123@cluster0-shard-00-00-c7klj.gcp.mongodb.net:27017,cluster0-shard-00-01-c7klj.gcp.mongodb.net:27017,cluster0-shard-00-02-c7klj.gcp.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority
+"
 
 class SignupForm(Form):
     
