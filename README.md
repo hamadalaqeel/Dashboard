@@ -4,6 +4,7 @@
 * Nawal Almgren
 * Alanoud Alsaud
 * Sarah Alabdulhadi
+* Hamad Alaqeel
 
 
 # Summary 
